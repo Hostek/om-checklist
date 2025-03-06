@@ -1,9 +1,10 @@
 <script lang="ts">
     export let id: string
     export let content: string
+    export let bgColor: string
 </script>
 
-<div {id} class="boxy white">{content}</div>
+<div {id} class={`boxy ${bgColor}`}>{content}</div>
 
 <style lang="scss">
     .boxy {
