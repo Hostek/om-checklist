@@ -1,44 +1,50 @@
-import { writable } from 'svelte/store';
+import { writable, type Writable } from "svelte/store"
 
-export function localStorageStore<T>(key: string, initialValue: T) {
-	// Check if we're in the browser environment
-	const isBrowser = typeof window !== 'undefined';
+export const KEY_PREFIX = "om-checklist"
 
-	// Get stored value or use initial value
-	const storedValue = isBrowser ? localStorage.getItem(key) : null;
-	const initial = storedValue ? JSON.parse(storedValue) : initialValue;
+type LocalStorageStore<T> = Writable<T> & {
+    reset: () => void
+}
 
-	// Create the store
-	const store = writable(initial, (set) => {
-		if (isBrowser) {
-			// Update store when localStorage changes from other tabs
-			const handleStorage = (event: StorageEvent) => {
-				if (event.key === key) {
-					set(event.newValue ? JSON.parse(event.newValue) : initialValue);
-				}
-			};
+export function localStorageStore<T>(
+    key1: string,
+    initialValue: T
+): LocalStorageStore<T> {
+    const isBrowser = typeof window !== "undefined"
 
-			window.addEventListener('storage', handleStorage);
-			return () => window.removeEventListener('storage', handleStorage);
-		}
-	});
+    const key = `${KEY_PREFIX}-${key1}`
 
-	// Subscribe to store changes and save to localStorage
-	if (isBrowser) {
-		store.subscribe((value) => {
-			try {
-				localStorage.setItem(key, JSON.stringify(value));
-			} catch (error) {
-				console.error('Error saving to localStorage:', error);
-			}
-		});
-	}
+    const storedValue = isBrowser ? localStorage.getItem(key) : null
+    const initial = storedValue ? (JSON.parse(storedValue) as T) : initialValue
 
-	return {
-		subscribe: store.subscribe,
-		set: store.set,
-		update: store.update,
-		// Optional: Add a reset method
-		reset: () => store.set(initialValue)
-	};
+    const store = writable<T>(initial, (set) => {
+        if (!isBrowser) return
+
+        const handleStorage = (event: StorageEvent) => {
+            if (event.key === key) {
+                const newValue = event.newValue
+                    ? (JSON.parse(event.newValue) as T)
+                    : initialValue
+                set(newValue)
+            }
+        }
+
+        window.addEventListener("storage", handleStorage)
+        return () => window.removeEventListener("storage", handleStorage)
+    })
+
+    if (isBrowser) {
+        store.subscribe((value) => {
+            try {
+                localStorage.setItem(key, JSON.stringify(value))
+            } catch (error) {
+                console.error("LocalStorage error:", error)
+            }
+        })
+    }
+
+    return {
+        ...store,
+        reset: () => store.set(initialValue),
+    }
 }
