@@ -1,13 +1,11 @@
 <script lang="ts">
-    import { initialChecklist } from "$lib/initialChecklist"
+    import { checklistOM } from "$lib/checklist"
     import Box from "../components/Box.svelte"
-
-    const checklist = initialChecklist()
 </script>
 
 <main class="content roboto-font">
-    {#each checklist as cl}
-        <Box id={cl.id} bgColor={cl.bgColor} content={cl.id} />
+    {#each $checklistOM as cl}
+        <Box id={cl.id} content={cl.id} />
     {/each}
 </main>
 
