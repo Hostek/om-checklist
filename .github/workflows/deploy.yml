@@ -7,6 +7,12 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+    
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -14,7 +20,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
 
       - name: Install dependencies
         run: npm install
@@ -27,4 +33,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build 
-          keep_files: false 
+          keep_files: false
+          force_orphan: true
