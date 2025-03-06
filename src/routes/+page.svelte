@@ -1,6 +1,9 @@
 <script lang="ts">
+    import { initialChecklist } from "$lib/initialChecklist"
     import Box from "../components/Box.svelte"
     import { bgColors } from "../constants"
+
+    console.log({ s: initialChecklist() })
 </script>
 
 <main class="content roboto-font">
