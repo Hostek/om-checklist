@@ -12,6 +12,12 @@
         // color: cadetblue;
 
         text-align: center;
+        min-height: 10vh;
+        box-sizing: border-box;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .white {
