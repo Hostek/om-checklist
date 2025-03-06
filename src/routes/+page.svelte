@@ -1,16 +1,19 @@
 <script lang="ts">
     import { initialChecklist } from "$lib/initialChecklist"
     import Box from "../components/Box.svelte"
-    import { bgColors } from "../constants"
 
-    console.log({ s: initialChecklist() })
+    const checklist = initialChecklist()
 </script>
 
 <main class="content roboto-font">
-    {#each bgColors as cl}
-        <Box id={cl} bgColor={cl} content={cl} />
+    {#each checklist as cl}
+        <Box id={cl.id} bgColor={cl.bgColor} content={cl.id} />
     {/each}
 </main>
 
 <style lang="scss">
+    main {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+    }
 </style>

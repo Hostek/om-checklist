@@ -9,9 +9,13 @@
 <style lang="scss">
     .boxy {
         border: 1px solid hsl(339, 65%, 54%);
+        // color: cadetblue;
+
+        text-align: center;
     }
 
     .white {
+        // background-color: #242526;
         background-color: white;
     }
 
