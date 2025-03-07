@@ -65,7 +65,7 @@
         background-color: var(--local-bg-color);
 
         .title {
-            font-size: 4.5vw;
+            font-size: max(4.5vw, 3.5vh);
         }
 
         .btne {

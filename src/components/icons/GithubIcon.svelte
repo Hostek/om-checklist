@@ -1,8 +1,14 @@
+<script>
+    import { iconSize } from "$lib/stores/iconSize"
+</script>
+
 <!-- https://github.com/feathericons/feather -->
+
 <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width={$iconSize}
+    height={$iconSize}
+    viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
     stroke-linecap="round"
