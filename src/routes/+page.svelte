@@ -2,28 +2,39 @@
     import { checklistOM } from "$lib/stores/checklist"
     import { theme } from "$lib/stores/theme"
     import Box from "../components/Box.svelte"
+    import GithubIcon from "../components/icons/GithubIcon.svelte"
     import MoonIcon from "../components/icons/MoonIcon.svelte"
     import SunIcon from "../components/icons/SunIcon.svelte"
 </script>
 
 <header data-theme={$theme} class="roboto-font">
     <div class="title">om-checklist</div>
-    <button
-        aria-label="Toggle Theme"
-        on:click={() => {
-            if ($theme === "dark") {
-                theme.set("light")
-            } else {
-                theme.set("dark")
-            }
-        }}
-    >
-        {#if $theme === "dark"}
-            <MoonIcon />
-        {:else}
-            <SunIcon />
-        {/if}
-    </button>
+    <div class="btne">
+        <a
+            aria-label="Github"
+            href="https://github.com/Hostek/om-checklist"
+            target="_blank"
+            rel="noopener"
+        >
+            <GithubIcon />
+        </a>
+        <button
+            aria-label="Toggle Theme"
+            on:click={() => {
+                if ($theme === "dark") {
+                    theme.set("light")
+                } else {
+                    theme.set("dark")
+                }
+            }}
+        >
+            {#if $theme === "dark"}
+                <MoonIcon />
+            {:else}
+                <SunIcon />
+            {/if}
+        </button>
+    </div>
 </header>
 
 <main class="content roboto-font">
@@ -57,12 +68,22 @@
             font-size: 4.5vw;
         }
 
-        button {
-            outline: none;
-            border: none;
-            background-color: var(--local-bg-color);
-            color: inherit;
-            cursor: pointer;
+        .btne {
+            display: flex;
+
+            a,
+            button {
+                @include padding-x(0.51vw);
+                outline: none;
+                border: none;
+                background-color: var(--local-bg-color);
+                color: inherit;
+                cursor: pointer;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
         }
     }
 
