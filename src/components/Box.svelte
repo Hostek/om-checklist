@@ -53,6 +53,7 @@
         --green: #5d8400;
         --red: #cc3700;
         --neutral: #181a1b;
+        --blue: #054d79;
     }
     [data-theme="light"] {
         --font-color: black;
@@ -61,6 +62,7 @@
         --green: greenyellow;
         --red: orangered;
         --neutral: white;
+        --blue: lightskyblue;
     }
 
     .boxy {
@@ -92,5 +94,9 @@
 
     .red {
         background-color: var(--red);
+    }
+
+    .blue {
+        background-color: var(--blue);
     }
 </style>
