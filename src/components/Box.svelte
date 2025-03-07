@@ -1,5 +1,6 @@
 <script lang="ts">
-    import { checklistOM } from "$lib/checklist"
+    import { checklistOM } from "$lib/stores/checklist"
+    import { theme } from "$lib/stores/theme"
     import { bgColors } from "../constants"
 
     export let id: string
@@ -37,6 +38,7 @@
     {tabindex}
     class={`boxy ${bgColor}`}
     role="button"
+    data-theme={$theme}
     on:keydown={handleKeyDown}
     on:click={handleClick}
 >
@@ -44,9 +46,26 @@
 </div>
 
 <style lang="scss">
+    [data-theme="dark"] {
+        --font-color: snow;
+        --border-color: #807769;
+        --yellow: #999900;
+        --green: #5d8400;
+        --red: #cc3700;
+        --neutral: #181a1b;
+    }
+    [data-theme="light"] {
+        --font-color: black;
+        --border-color: #242526;
+        --yellow: yellow;
+        --green: greenyellow;
+        --red: orangered;
+        --neutral: white;
+    }
+
     .boxy {
-        border: 1px solid hsl(339, 65%, 54%);
-        // color: cadetblue;
+        // border: 1px solid hsl(339, 65%, 54%);
+        border: 1px solid var(--border-color);
 
         text-align: center;
         min-height: 10vh;
@@ -55,22 +74,23 @@
         display: flex;
         align-items: center;
         justify-content: center;
+
+        color: var(--font-color);
     }
 
     .white {
-        // background-color: #242526;
-        background-color: white;
+        background-color: var(--neutral);
     }
 
     .yellow {
-        background-color: yellow;
+        background-color: var(--yellow);
     }
 
     .green {
-        background-color: greenyellow;
+        background-color: var(--green);
     }
 
     .red {
-        background-color: red;
+        background-color: var(--red);
     }
 </style>

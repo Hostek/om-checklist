@@ -1,7 +1,21 @@
 <script lang="ts">
-    import { checklistOM } from "$lib/checklist"
+    import { checklistOM } from "$lib/stores/checklist"
+    import { theme } from "$lib/stores/theme"
     import Box from "../components/Box.svelte"
 </script>
+
+<header>
+    om-checklist
+    <button
+        on:click={() => {
+            if ($theme === "dark") {
+                theme.set("light")
+            } else {
+                theme.set("dark")
+            }
+        }}>Toggle Theme</button
+    >
+</header>
 
 <main class="content roboto-font">
     {#each $checklistOM as cl}
