@@ -10,7 +10,7 @@
     $: tabindex = 5 + currentIdx
 
     function handleClick() {
-        console.log("hi from ", id)
+        // console.log("hi from ", id)
         checklistOM.update((curr) => {
             const new_arr = [...curr]
             const curr_bgColor = curr[currentIdx].bgColor
@@ -20,6 +20,16 @@
             return new_arr
         })
     }
+
+    type KeydownEventParam = KeyboardEvent & {
+        currentTarget: EventTarget & HTMLDivElement
+    }
+
+    function handleKeyDown(e: KeydownEventParam) {
+        if (e.key === "Enter" || e.key === " ") {
+            handleClick()
+        }
+    }
 </script>
 
 <div
@@ -27,7 +37,7 @@
     {tabindex}
     class={`boxy ${bgColor}`}
     role="button"
-    on:keydown={handleClick}
+    on:keydown={handleKeyDown}
     on:click={handleClick}
 >
     {content}
@@ -57,7 +67,7 @@
     }
 
     .green {
-        background-color: green;
+        background-color: greenyellow;
     }
 
     .red {
