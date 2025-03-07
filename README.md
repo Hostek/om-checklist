@@ -36,3 +36,12 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Third party assets
+
+This project uses icons from:
+
+- [Ionicons](https://github.com/ionic-team/ionicons) (MIT License)
+- [Feather Icons](https://github.com/feathericons/feather) (MIT License)
+
+Full license texts are available in [THIRD_PARTY_LICENSES](THIRD_PARTY_LICENSES).
