@@ -41,7 +41,6 @@ You can preview the production build with `npm run preview`.
 
 This project uses icons from:
 
-- [Ionicons](https://github.com/ionic-team/ionicons) (MIT License)
 - [Feather Icons](https://github.com/feathericons/feather) (MIT License)
 
 Full license texts are available in [THIRD_PARTY_LICENSES](THIRD_PARTY_LICENSES).
