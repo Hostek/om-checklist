@@ -35,7 +35,7 @@
 
 <div
     {id}
-    {tabindex}
+    tabindex="0"
     class={`boxy ${bgColor}`}
     role="button"
     data-theme={$theme}

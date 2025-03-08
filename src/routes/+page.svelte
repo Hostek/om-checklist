@@ -15,6 +15,7 @@
             href="https://github.com/Hostek/om-checklist"
             target="_blank"
             rel="noopener"
+            tabindex="0"
         >
             <GithubIcon />
         </a>
@@ -27,6 +28,7 @@
                     theme.set("dark")
                 }
             }}
+            tabindex="0"
         >
             {#if $theme === "dark"}
                 <MoonIcon />
